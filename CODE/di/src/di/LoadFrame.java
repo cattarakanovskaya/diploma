@@ -5,6 +5,8 @@
  */
 package di;
 
+import java.io.File;
+
 /**
  *
  * @author kate
@@ -52,9 +54,12 @@ public class LoadFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
-        dispose ();
+        dispose();
+        File f = jFileChooser1.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        ReadFile r = new ReadFile(filename);
     }//GEN-LAST:event_jFileChooser1ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

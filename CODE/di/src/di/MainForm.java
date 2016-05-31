@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import java.awt.*;
 import java.applet.*;
 import java.net.*;
+import java.util.ArrayList;
 /**
  *
  * @author kate
@@ -23,6 +24,7 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,6 +184,7 @@ public class MainForm extends javax.swing.JFrame {
                 new MainForm().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package di;
-
+import java.util.Scanner;
 /**
  *
  * @author kate
  */
 public class Other {
-    
+    public Other(){
+        int a = 7;
+        System.out.print(a);
+    }
     
 }
