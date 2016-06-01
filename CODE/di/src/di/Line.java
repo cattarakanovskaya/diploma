@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package di;
+import java.lang.String;
 
 /**
  *
@@ -16,7 +17,9 @@ public class Line {
     float speed;
     int course;
     String date;
-    void Line(int id, float w, float l, float s, int c, String d){
+
+    
+    Line(int id, float w, float l, float s, int c, String d){
         ID = id;
         width = w;
         longitude = l;
