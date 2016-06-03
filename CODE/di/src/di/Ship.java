@@ -4,27 +4,22 @@
  * and open the template in the editor.
  */
 package di;
-import java.lang.String;
 
 /**
  *
  * @author Kate
  */
-public class Line {
+public class Ship {
     int ID;
     float width;
     float longitude;
     float speed;
     int course;
-    long date;
-
-    
-    Line(int id, float w, float l, float s, int c, long d){
+    Ship(int id, float w, float l, float s, int c){
         ID = id;
         width = w;
         longitude = l;
         speed = s;
         course = c;
-        date = d;
     }
 }

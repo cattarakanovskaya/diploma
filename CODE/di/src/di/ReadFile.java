@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.lang.String;
+import java.util.Calendar;
 
 /**
  *
@@ -22,7 +23,10 @@ import java.lang.String;
  */
 public class ReadFile {
     ArrayList <Line> AllLists = new ArrayList();
+    ArrayList <Ship> ShipsAtMoment = new ArrayList();
+    static boolean flag;
     ReadFile(String filename) throws FileNotFoundException, IOException, ParseException{
+        flag=false;
         FileInputStream fileToRead = new FileInputStream(filename);
         InputStreamReader myfile = new InputStreamReader( new FileInputStream(filename));
         FileReader reader = new FileReader(filename);
@@ -43,11 +47,13 @@ public class ReadFile {
                 s = "";
                 }
             }
-        } 
+        }
+        ShipsAtMoment = searchShipsAtMoment(AllLists.get(1).date);
         for(int i = 0; i<AllLists.size(); i++){
-            System.out.print(AllLists.get(i).ID);
+            System.out.print(AllLists.get(i).date);
             System.out.print('\n');
         }
+        flag=true;
     }
     Line parseString(String bigS) throws ParseException{
         int ID = 0;
@@ -56,7 +62,7 @@ public class ReadFile {
         float width = 0;
         float longitude = 0;
         float speed = 0;
-        String date = "";
+        long date = 0;
         int columns = 7;
         for(int i = 0; i<bigS.length(); i++){
            // while(bigS.charAt(i)!='\n'){
@@ -67,7 +73,12 @@ public class ReadFile {
                 }
                 columns--;
                 switch (columns){
-                    case 0: date = field;
+                    case 0: {
+                        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+                        Date d = format.parse(field);
+                        long dm = d.getTime() - age*60000;
+                        date = dm;
+                    }
                         break;
                     case 1: age = Integer.parseInt(field);
                         break;
@@ -82,13 +93,20 @@ public class ReadFile {
                     case 6: ID = Integer.parseInt(field);
                         break;
                 }
-            /*SimpleDateFormat format = new SimpleDateFormat();
-            format.applyPattern("dd.MM.yyyy");
-            Date docDate= format.parse(s);*/
             }
-       // }
         Line l = new Line(ID, width, longitude, speed, course, date);
-        //AllLists.add(l);
         return l;
+    }
+    ArrayList <Ship> searchShipsAtMoment(long moment){
+        ArrayList <Ship> Ships = new ArrayList();
+        int i = 0;
+        while(i<AllLists.size()){
+            if(moment==AllLists.get(i).date){
+                Ship s = new Ship(AllLists.get(i).ID, AllLists.get(i).width, AllLists.get(i).longitude, AllLists.get(i).speed, AllLists.get(i).course);
+                Ships.add(s);
+            }
+            i++;
+        }
+        return Ships;
     }
 }
