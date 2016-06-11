@@ -8,8 +8,13 @@ package di;
 import javax.swing.ImageIcon;
 import java.awt.*;
 import java.applet.*;
+import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.MissingResourceException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 /**
  *
  * @author kate
@@ -41,15 +46,34 @@ public class MainForm extends javax.swing.JFrame {
         jSlider1 = new javax.swing.JSlider();
         jPanel2 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g){
-                ImageIcon im = new ImageIcon("staticmap.png");
-                Image i = im.getImage();
-                g.drawImage(i, 0, 0, this.getSize().width, this.getSize().height, this);
-                int x = 10;
                 if(ReadFile.flag==true){
-                    for(int k=0; k<10; k++){
-                        g.drawLine(0,x,1000,x);
-                        x = k*10;
-                        x++;
+                    //System.out.print(MapMap.centrwidth);
+                    //System.out.print('\n');
+                    //System.out.print(MapMap.centrlongitude);
+                    String w = Float.toString(MapMap.centrwidth);
+                    String l = Float.toString(MapMap.centrlongitude);
+                    System.out.print(w);
+                    System.out.print('\n');
+                    System.out.print(l);
+                    String url = "https://maps.googleapis.com/maps/api/staticmap?center="+w+","+l+"&scale=2&zoom=10&size=450x325&maptype=roadmap&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
+
+                    //ImageIcon im = new ImageIcon("staticmap (2).png");
+
+                    try {
+                        Image i = ImageIO.read(new URL(url));
+
+                        //   Image i = im.getImage();
+                        g.drawImage(i, 0, 0, this.getSize().width, this.getSize().height, this);
+                        int x = 10;
+                        /*if(ReadFile.flag==true){
+                            for(int k=0; k<10; k++){
+                                g.drawLine(0,x,1000,x);
+                                x = k*10;
+                                x++;
+                            }
+                        }*/
+                    } catch (IOException ex) {
+                        Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -72,7 +96,7 @@ public class MainForm extends javax.swing.JFrame {
         jSlider1.setValue(0);
 
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1024, 666));
+        jPanel2.setMaximumSize(null);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -82,7 +106,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 666, Short.MAX_VALUE)
+            .addGap(0, 651, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
@@ -91,7 +115,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +161,7 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -148,12 +172,11 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(134, 134, 134)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))

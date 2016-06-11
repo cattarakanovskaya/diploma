@@ -5,12 +5,16 @@
  */
 package di;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -64,9 +68,11 @@ public class LoadFrame extends javax.swing.JFrame {
         String filename = f.getAbsolutePath();
         try {
             ReadFile r = new ReadFile(filename);
+            MapMap m = new MapMap(ReadFile.centrwidth, ReadFile.centrlongitude);
         } catch (IOException | ParseException ex) {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_jFileChooser1ActionPerformed
     
     /**
