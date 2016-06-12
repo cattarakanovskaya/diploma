@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 
 public class ReadFile {
-    ArrayList <Line> AllLists = new ArrayList(); //записи(строки в текстовом файле с кораблями)
+    static ArrayList <Line> AllLists = new ArrayList(); //записи(строки в текстовом файле с кораблями)
     ArrayList <Ship> ShipsAtMoment = new ArrayList();//суда в момент времени
     static boolean flag; //флаг загрузки файла, чтобы отрисовать карту
     static float mostwidth; //самая большая широта

@@ -68,7 +68,10 @@ public class LoadFrame extends javax.swing.JFrame {
         String filename = f.getAbsolutePath();
         try {
             ReadFile r = new ReadFile(filename);
-            MapMap m = new MapMap(ReadFile.centrwidth, ReadFile.centrlongitude);
+            MapMap m = new MapMap(ReadFile.centrwidth, ReadFile.centrlongitude, ReadFile.AllLists.get(0).date);
+            MapMap.XY();
+            System.out.print(MapMap.ShipAtJPanel.get(0).x);
+            
         } catch (IOException | ParseException ex) {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
