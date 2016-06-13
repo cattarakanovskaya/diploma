@@ -61,6 +61,10 @@ public class MainForm extends javax.swing.JFrame {
                             g.drawOval(447, 311, 7, 7);// центр
                             g.drawOval(471, 311, 7, 7);
                             for(int k=0;k<MapMap.ShipAtJPanel.size(); k++){
+                                /*  System.out.print('\n');
+                                System.out.print(MapMap.ShipAtJPanel.get(k).xm);
+                                System.out.print('\n');
+                                System.out.print(MapMap.ShipAtJPanel.get(k).ym);*/
                                 g.drawOval(MapMap.ShipAtJPanel.get(k).x, MapMap.ShipAtJPanel.get(k).y, 7, 7);
                             }
                             //g.drawOval(461, 311, 7, 7);
@@ -92,7 +96,12 @@ public class MainForm extends javax.swing.JFrame {
         jSlider1.setValue(0);
 
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.setMaximumSize(null);
+
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel2MouseMoved(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,6 +198,13 @@ public class MainForm extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jPanel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseMoved
+        int x = evt.getX();
+        int y = evt.getY();
+        ImaginaryShip is = new ImaginaryShip(x, y);
+        Count c = new Count(is, MapMap.ShipsAtMoment);
+    }//GEN-LAST:event_jPanel2MouseMoved
 
     /**
      * @param args the command line arguments

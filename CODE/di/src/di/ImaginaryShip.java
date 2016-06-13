@@ -12,8 +12,12 @@ package di;
 public class ImaginaryShip {
     float width;
     float longitude;
-    ImaginaryShip(float w, float l){
-        width = w;
-        longitude = l;
+    ImaginaryShip(int w, int l){
+        width = (float) (MapMap.centrwidth+(311-w)*0.0005);
+        longitude = (float) (MapMap.centrlongitude-(447-l)*0.007);
+        System.out.print('\n');
+        System.out.print(width);
+        System.out.print('\n');
+        System.out.print(longitude);
     }
 }
