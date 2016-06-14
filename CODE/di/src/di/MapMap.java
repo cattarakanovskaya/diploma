@@ -32,13 +32,15 @@ public class MapMap {
               //  System.out.print(i);
                 Ship s = new Ship(AllLists.get(i).ID, AllLists.get(i).width, AllLists.get(i).longitude, AllLists.get(i).speed, AllLists.get(i).course);
                 Ships.add(s);
-               /* System.out.print('\n');
+                /*System.out.print('\n');
                 System.out.print(s.ID);
-                System.out.print(s.course);
-                System.out.print('\n');*/
+                System.out.print('\n');
+                System.out.print(s.course);*/
+                
             }
             i++;
         }
+        
         return Ships;
     }
     

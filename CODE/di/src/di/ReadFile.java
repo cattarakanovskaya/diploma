@@ -45,7 +45,7 @@ public class ReadFile {
             else{
                 if((char)c=='\n'){
                     Line l = parseString(s);
-                    AllLists.add(l);
+                    if (l.course!=511) AllLists.add(l);
                     s = "";
                     if(first==true){
                         first=false;
@@ -58,10 +58,8 @@ public class ReadFile {
             }
         }
         Line l = parseString(s);
-        AllLists.add(l);
-        s = "";
+        if (l.course!=511) AllLists.add(l);
         centrwidth=(float) (mostwidth - ((mostwidth+0.0001)-(leastwidth-0.001))/2);
-        //System.out.print(centrwidth);
         centrlongitude=(float) (mostlongitude-((mostlongitude+0.0001)-(leastlongitude-0.001))/2);
         flag=true;
     }

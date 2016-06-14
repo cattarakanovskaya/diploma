@@ -49,8 +49,14 @@ public class MainForm extends javax.swing.JFrame {
                 if(ReadFile.flag==true){
                     String w = Float.toString(MapMap.centrwidth);
                     String l = Float.toString(MapMap.centrlongitude);
-                    // System.out.print(l);
-                    String url = "https://maps.googleapis.com/maps/api/staticmap?center=42.6738,132.98044&scale=2&zoom=10&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:S%7C42.6738,132.99712&markers=color:yellow%7Clabel:Q%7C42.7728,132.981&markers=color:red%7Clabel:Q%7C42.7734,132.952&markers=color:white%7Clabel:Q%7C42.736,133.081&markers=color:orange%7Clabel:Q%7C42.7345,133.078&markers=color:orange%7Clabel:Q%7C42.7644,132.967&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
+                    String wb = Float.toString(ReadFile.mostwidth);
+                    String lb = Float.toString(ReadFile.mostlongitude);
+                    String wm = Float.toString(ReadFile.leastwidth);
+                    String lm = Float.toString(ReadFile.leastlongitude);
+                    System.out.print(w);
+                    System.out.print('\n');
+                    System.out.print(l);
+                    String url = "https://maps.googleapis.com/maps/api/staticmap?center="+w+","+l+"&zoom=8&scale=2&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:S%7C"+w+","+l+"4&markers=color:white%7Clabel:Q%7C42.76455,132.7679&markers=color:red%7Clabel:Q%7C42.7345,133.078&markers=color:yellow%7Clabel:Q%7C"+wm+","+lm+"&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
                     try {
                         ImageIcon im = new ImageIcon(new URL(url));
                         // Image i = ImageIO.read(new URL(url));
@@ -58,19 +64,16 @@ public class MainForm extends javax.swing.JFrame {
                         Image i = im.getImage();
                         g.drawImage(i, 0, 0, this.getSize().width, this.getSize().height, this);
                         if(ReadFile.flag==true){
-                            // g.drawOval(447, 311, 7, 7);// центр
-                            //g.drawOval(471, 311, 7, 7);
+                            g.drawOval(446, 311, 7, 7);// центр
+                            // g.drawOval(441, 307, 7, 7);
+                            //g.drawOval(450, 305, 7, 7);
                             for(int k=0;k<MapMap.ShipAtJPanel.size(); k++){
-                                /*  System.out.print('\n');
-                                System.out.print(MapMap.ShipAtJPanel.get(k).xm);
+                                /* System.out.print('\n');
+                                System.out.print(MapMap.ShipAtJPanel.get(k).x);
                                 System.out.print('\n');
-                                System.out.print(MapMap.ShipAtJPanel.get(k).ym);*/
-                                g.drawOval(MapMap.ShipAtJPanel.get(k).x, MapMap.ShipAtJPanel.get(k).y, 7, 7);
+                                System.out.print(MapMap.ShipAtJPanel.get(k).y);*/
+                                g.drawOval(MapMap.ShipAtJPanel.get(k).xm, MapMap.ShipAtJPanel.get(k).ym, 7, 7);
                             }
-                            //g.drawOval(461, 311, 7, 7);
-                            //g.drawOval(301, 291, 7, 7);
-                            // g.drawLine(450,0,450,651);
-                            // g.drawLine(0,326,900,326);
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -203,6 +206,7 @@ public class MainForm extends javax.swing.JFrame {
             int x = evt.getX();
             int y = evt.getY();
             ImaginaryShip is = new ImaginaryShip(x, y);
+            
             // Count c = new Count(is, MapMap.ShipsAtMoment);
         }
     }//GEN-LAST:event_jPanel2MouseMoved
