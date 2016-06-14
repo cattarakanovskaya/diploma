@@ -24,9 +24,18 @@ public class MapMap {
         ArrayList <Ship> Ships = new ArrayList();
         int i = 0;
         while(i<AllLists.size()){
+           /* System.out.print('\n');
+            System.out.print(AllLists.size());
+            System.out.print('\n');
+            System.out.print(AllLists.get(i).ID);*/
             if(moment==AllLists.get(i).date){
+              //  System.out.print(i);
                 Ship s = new Ship(AllLists.get(i).ID, AllLists.get(i).width, AllLists.get(i).longitude, AllLists.get(i).speed, AllLists.get(i).course);
                 Ships.add(s);
+               /* System.out.print('\n');
+                System.out.print(s.ID);
+                System.out.print(s.course);
+                System.out.print('\n');*/
             }
             i++;
         }

@@ -57,6 +57,9 @@ public class ReadFile {
                 }
             }
         }
+        Line l = parseString(s);
+        AllLists.add(l);
+        s = "";
         centrwidth=(float) (mostwidth - ((mostwidth+0.0001)-(leastwidth-0.001))/2);
         //System.out.print(centrwidth);
         centrlongitude=(float) (mostlongitude-((mostlongitude+0.0001)-(leastlongitude-0.001))/2);
@@ -127,5 +130,13 @@ public class ReadFile {
     }
     
     
-    
+    long searchLeastMoment(){
+        long leastmoment = AllLists.get(0).date;
+        int i = 0;
+        while(i<AllLists.size()){
+            if(leastmoment>AllLists.get(i).date) leastmoment = AllLists.get(i).date;
+            i++;
+        }
+        return leastmoment;
+    }
 }

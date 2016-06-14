@@ -49,7 +49,7 @@ public class MainForm extends javax.swing.JFrame {
                 if(ReadFile.flag==true){
                     String w = Float.toString(MapMap.centrwidth);
                     String l = Float.toString(MapMap.centrlongitude);
-                    System.out.print(l);
+                    // System.out.print(l);
                     String url = "https://maps.googleapis.com/maps/api/staticmap?center=42.6738,132.98044&scale=2&zoom=10&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:S%7C42.6738,132.99712&markers=color:yellow%7Clabel:Q%7C42.7728,132.981&markers=color:red%7Clabel:Q%7C42.7734,132.952&markers=color:white%7Clabel:Q%7C42.736,133.081&markers=color:orange%7Clabel:Q%7C42.7345,133.078&markers=color:orange%7Clabel:Q%7C42.7644,132.967&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
                     try {
                         ImageIcon im = new ImageIcon(new URL(url));
@@ -58,8 +58,8 @@ public class MainForm extends javax.swing.JFrame {
                         Image i = im.getImage();
                         g.drawImage(i, 0, 0, this.getSize().width, this.getSize().height, this);
                         if(ReadFile.flag==true){
-                            g.drawOval(447, 311, 7, 7);// центр
-                            g.drawOval(471, 311, 7, 7);
+                            // g.drawOval(447, 311, 7, 7);// центр
+                            //g.drawOval(471, 311, 7, 7);
                             for(int k=0;k<MapMap.ShipAtJPanel.size(); k++){
                                 /*  System.out.print('\n');
                                 System.out.print(MapMap.ShipAtJPanel.get(k).xm);
@@ -96,7 +96,6 @@ public class MainForm extends javax.swing.JFrame {
         jSlider1.setValue(0);
 
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jPanel2MouseMoved(evt);
@@ -200,10 +199,12 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jPanel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseMoved
-        int x = evt.getX();
-        int y = evt.getY();
-        ImaginaryShip is = new ImaginaryShip(x, y);
-        Count c = new Count(is, MapMap.ShipsAtMoment);
+        if(ReadFile.flag==true){
+            int x = evt.getX();
+            int y = evt.getY();
+            ImaginaryShip is = new ImaginaryShip(x, y);
+            // Count c = new Count(is, MapMap.ShipsAtMoment);
+        }
     }//GEN-LAST:event_jPanel2MouseMoved
 
     /**
