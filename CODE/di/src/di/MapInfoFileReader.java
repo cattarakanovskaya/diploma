@@ -42,9 +42,24 @@ public class MapInfoFileReader {
     }
 
     private long parseTime(int age, String date) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat format = new SimpleDateFormat("d.M.y hh:mm");
         Date d = format.parse(date);
-        return d.getTime() - age * 60000;
+        System.out.print(d.getDay());
+        System.out.print(' ');
+        System.out.print(d.getMonth());
+        System.out.print(' ');
+        System.out.print(d.getYear());
+        System.out.print(' ');
+        System.out.print(d.getHours());
+        
+        System.out.print(' ');
+        System.out.print(d.getMinutes());
+        System.out.print(' ');
+        System.out.print(d);
+        System.out.print('\n');
+        System.out.print(date);
+        System.out.print('\n');
+        return d.getTime() / 1000 - age * 60;
     }
 
 }
