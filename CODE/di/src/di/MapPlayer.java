@@ -9,9 +9,11 @@ public class MapPlayer {
     private long start, finish, now;
     private MapPlayerState state;
     private Thread thread;
+    private javax.swing.JSlider slider;
 
-    public MapPlayer(final Map map) {
+    public MapPlayer(final Map map, final javax.swing.JSlider slider) {
         this.map = map;
+        this.slider = slider;
         start = map.firstMoment;
         finish = map.lastMoment;
         now = start;
@@ -23,13 +25,15 @@ public class MapPlayer {
                     map.draw(now);
                     if (state == MapPlayerState.PLAY) {
                         now += 60;
+                        slider.setValue(getTimeBarCoord());
                     }
                     if (now >= finish) {
                         now = start;
                         state = MapPlayerState.PAUSE;
+                        slider.setValue(getTimeBarCoord());
                     }
                     try {
-                        Thread.sleep(1000/6);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -37,6 +41,17 @@ public class MapPlayer {
             }
         });
         thread.start();
+    }
+    
+    public MapPlayer(final Map map, int bar){
+        this.map = map;
+        start = map.firstMoment;
+        finish = map.lastMoment;
+        now = start+bar*(finish-start)/100;
+        System.out.print(now);
+        System.out.print('\n');
+        map.draw(now);
+        
     }
 
     public void play() {
@@ -47,8 +62,8 @@ public class MapPlayer {
         }
     }
 
-    public float getTimeBarCoord() {
-        return ((float) (now - start)) / ((float) (finish - start));
+    public int getTimeBarCoord() {
+        return (int) ( (now - start)*100 /  (finish - start));
     }
 
     public enum MapPlayerState {

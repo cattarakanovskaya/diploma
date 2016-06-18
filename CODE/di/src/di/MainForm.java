@@ -38,6 +38,11 @@ public class MainForm extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(200, 600));
 
         jSlider1.setValue(0);
+        jSlider1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                changeCoordTimeBar(evt);
+            }
+        });
 
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -158,12 +163,16 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (map != null) {
             if (player == null) {
-                player = new MapPlayer(map);
+                player = new MapPlayer(map, jSlider1);
             } else {
                 player.play();
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void changeCoordTimeBar(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_changeCoordTimeBar
+        System.out.print(jSlider1.getValue());
+    }//GEN-LAST:event_changeCoordTimeBar
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
