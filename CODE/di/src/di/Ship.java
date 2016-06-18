@@ -33,16 +33,17 @@ public class Ship {
         float l = longitude;
         Vector2i coords = new Vector2i();
         
-        //int y = (int) (311 + ((Map1.centrwidth - w) / 0.0001) * 0.06);
-        //int x = (int) (446 - ((Map1.centrlongitude - l) / 0.001) * 0.4);
+       // coords.y = (int) (311 + ((map.centerSize.x - w) / 0.0001) * 0.06);
+        //coords.x = (int) (446 - ((map.centerSize.y - l) / 0.001) * 0.4);
 
-        long r = 6371000;
-        long ym1 = (long) (r * Math.toRadians(w));
-        long xm1 = (long) (r * sin(Math.toRadians(90 - w)) * Math.toRadians(l));
-        long ymc = (long) (r * Math.toRadians(map.centerSize.x));
-        long xmc = (long) (r * sin(Math.toRadians(90 - map.centerSize.x)) * Math.toRadians(map.centerSize.y));
-        coords.x = (int) (446 - (xmc - xm1) * 0.00374);
-        coords.y = (int) (311 + (ymc - ym1) * 0.004);
+        int r = 6371000;
+        long ym1=(long) (r*Math.toRadians(w));
+        long xm1=(long) (r*sin(Math.toRadians(90-w))*Math.toRadians(l));
+        long ymc=(long) (r*Math.toRadians(map.centerSize.x));
+        long xmc=(long) (r*sin(Math.toRadians(90-w))*Math.toRadians(map.centerSize.y));
+        coords.x = (int) (446-(xmc-xm1)*0.00451); 
+        coords.y =(int) (311+(ymc-ym1)*0.0043);
+        
         
         return coords;
     }

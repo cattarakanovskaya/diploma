@@ -1,6 +1,7 @@
 package di;
 
 import di.utils.Vector2f;
+import java.awt.Color;
 import java.awt.Image;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,13 +50,7 @@ public class Map {
     }
 
     private Image getMapImage() throws MalformedURLException {
-        String url = "https://maps.googleapis.com/maps/api/staticmap?center="
-                + centerSize.x + "," + centerSize.y
-                + "&zoom=8&scale=2&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:S%7C"
-                + centerSize.x + "," + centerSize.y
-                + "&markers=color:white%7Clabel:Q%7C42.76455,132.7679&markers=color:red%7Clabel:Q%7C42.7345,"
-                + "133.078&markers=color:yellow%7Clabel:Q%7C" + leastSize.x + "," + leastSize.y
-                + "&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
+        String url = "https://maps.googleapis.com/maps/api/staticmap?center="+centerSize.x+","+centerSize.y+"&zoom=8&scale=2&size=450x325&maptype=roadmap&markers=color:white%7Clabel:Q%7C42.7728,132.981&markers=color:white%7Clabel:Q%7C42.7734,132.952&markers=color:white%7Clabel:Q%7C42.5485,132.951&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
 
         return new ImageIcon(new URL(url)).getImage();
     }
@@ -66,13 +61,19 @@ public class Map {
         } catch (Exception ex) {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mapPanel.getGraphics().fillOval(446, 311, 7, 7); // центр
+        mapPanel.getGraphics().drawOval(446, 311, 7, 7); // центр
+       // mapPanel.getGraphics().drawLine(529, 0, 529, 650);
         ArrayList<Ship> shipsAtMoment = searchShipsAtMoment(moment);
         for (Ship ship : shipsAtMoment) {
             mapPanel.getGraphics().fillOval(
                     ship.getJPanelCoords(this).x,
                     ship.getJPanelCoords(this).y, 7, 7
             );
+           /* System.out.print(ship.getId());
+            System.out.print(' ');
+            System.out.print(' ');
+            System.out.print(ship.getJPanelCoords(this).y);
+            System.out.print('\n');*/
         }
     }
 

@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class MainForm extends javax.swing.JFrame {
 
     Map map = null;
+    MapPlayer player = null;
 
     public MainForm() {
         initComponents();
@@ -20,11 +21,7 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jSlider1 = new javax.swing.JSlider();
-        jPanel2 = new javax.swing.JPanel(){
-            public void paintComponent(Graphics g){
-
-            }
-        };
+        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -159,26 +156,13 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseMoved
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        long start = map.firstMoment;
-        long finish = map.lastMoment;
-
-        long now, delta;
-        while (start <= finish) {
-            now = System.nanoTime();
-
-            map.draw(start);
-
-            //delta = System.nanoTime() - now;
-            //if (delta < 1000000000/60) {
-            try {
-                //Thread.sleep((1000000000/60 - delta)/1000);
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+        if (map != null) {
+            if (player == null) {
+                player = new MapPlayer(map);
+            } else {
+                player.play();
             }
         }
-        start += 1000000 * 60;
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
