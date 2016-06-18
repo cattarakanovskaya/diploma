@@ -29,7 +29,7 @@ public class MapPlayer {
                         state = MapPlayerState.PAUSE;
                     }
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(1000/6);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
                     }
