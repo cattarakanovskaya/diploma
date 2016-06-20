@@ -25,10 +25,12 @@ public class MapPlayer {
                     map.draw(now);
                     if (state == MapPlayerState.PLAY) {
                         now += 60;
+                        map.now = now;
                         slider.setValue(getTimeBarCoord());
                     }
                     if (now >= finish) {
                         now = start;
+                        map.now = now;
                         state = MapPlayerState.PAUSE;
                         slider.setValue(getTimeBarCoord());
                     }

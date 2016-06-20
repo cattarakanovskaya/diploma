@@ -23,11 +23,14 @@ public class Map {
     public long lastMoment = Long.MIN_VALUE;
 
     private JPanel mapPanel;
+    private int zoom;
+    public long now;
 
     public Map() {
         mostSize.x = mostSize.y = Float.MIN_VALUE;
         leastSize.x = leastSize.y = Float.MAX_VALUE;
         centerSize.x = centerSize.y = Float.MIN_VALUE;
+        zoom = 8;
     }
 
     public void addShip(Ship ship) {
@@ -37,6 +40,7 @@ public class Map {
         leastSize.y = Math.min(leastSize.y, ship.getLongitude());
         firstMoment = Math.min(firstMoment, ship.getTime());
         lastMoment = Math.max(lastMoment, ship.getTime());
+        now=firstMoment;
         ships.add(ship);
     }
 
@@ -50,7 +54,7 @@ public class Map {
     }
 
     private Image getMapImage() throws MalformedURLException {
-        String url = "https://maps.googleapis.com/maps/api/staticmap?center="+centerSize.x+","+centerSize.y+"&zoom=8&scale=2&size=450x325&maptype=roadmap&markers=color:white%7Clabel:Q%7C42.7728,132.981&markers=color:white%7Clabel:Q%7C42.7734,132.952&markers=color:white%7Clabel:Q%7C42.5485,132.951&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
+        String url = "https://maps.googleapis.com/maps/api/staticmap?center="+centerSize.x+","+centerSize.y+"&zoom="+zoom+"&scale=2&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:C%7C42.76455,132.75894&markers=color:white%7Clabel:Q%7C42.7735,132.7679&markers=color:white%7Clabel:Q%7C42.7734,132.952&markers=color:white%7Clabel:Q%7C42.5485,132.951&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
 
         return new ImageIcon(new URL(url)).getImage();
     }
@@ -61,8 +65,9 @@ public class Map {
         } catch (Exception ex) {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mapPanel.getGraphics().drawOval(446, 311, 7, 7); // центр
-       // mapPanel.getGraphics().drawLine(529, 0, 529, 650);
+        mapPanel.getGraphics().drawOval(446, 315, 7, 7); // центр
+        mapPanel.getGraphics().drawOval(453, 315, 7, 7);
+        mapPanel.getGraphics().drawOval(453, 307, 7, 7);
         ArrayList<Ship> shipsAtMoment = searchShipsAtMoment(moment);
         for (Ship ship : shipsAtMoment) {
             mapPanel.getGraphics().fillOval(
@@ -86,5 +91,38 @@ public class Map {
         }
         return momentShips;
     }
-
+    
+    public void more(){
+        zoom++;
+        this.draw(now);
+    }
+    
+    public void less(){
+        zoom--;
+        this.draw(now);
+    }
+    
+    public void left(){
+        centerSize.y=(float) (centerSize.y-0.1);
+        this.draw(now);
+    }
+    
+    public void right(){
+        centerSize.y=(float) (centerSize.y+0.1);
+        this.draw(now);
+    }
+    
+    public void up(){
+        centerSize.x=(float) (centerSize.x+0.01);
+        this.draw(now);
+    }
+    
+    public void down(){
+        centerSize.x=(float) (centerSize.x-0.01);
+        this.draw(now);
+    }
+    
+    public int getZoom(){
+        return this.zoom;
+    }
 }

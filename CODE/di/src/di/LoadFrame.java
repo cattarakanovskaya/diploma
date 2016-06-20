@@ -19,6 +19,7 @@ public class LoadFrame extends javax.swing.JFrame {
         this.mapPanel = mapPanel;
         this.form = form;
         initComponents();
+        
     }
     
     
@@ -61,6 +62,7 @@ public class LoadFrame extends javax.swing.JFrame {
             map.setPanel(mapPanel);
             form.map = map;
             map.draw(map.firstMoment);
+            mapPanel.setFocusable(true);
         } catch (Exception ex) {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

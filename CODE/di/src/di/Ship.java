@@ -31,18 +31,29 @@ public class Ship {
     public Vector2i getJPanelCoords(Map map) {
         float w = latitude;
         float l = longitude;
+        float xPix = (float) 0.00451;
+        float yPix = (float) 0.0043;
         Vector2i coords = new Vector2i();
-        
-       // coords.y = (int) (311 + ((map.centerSize.x - w) / 0.0001) * 0.06);
-        //coords.x = (int) (446 - ((map.centerSize.y - l) / 0.001) * 0.4);
+        if(map.getZoom()>8){
+            xPix=xPix*2*(map.getZoom()-8);
+            yPix=yPix*2*(map.getZoom()-8);
+        }
+        if(map.getZoom()<8){
+            xPix=xPix/2*(8-map.getZoom());
+            yPix=yPix/2*(8-map.getZoom());
+        }
+        if(map.getZoom()==11){
+            xPix=(float) (xPix+0.0088);
+            yPix=(float) (yPix+0.0086);
+        }
 
         int r = 6371000;
         long ym1=(long) (r*Math.toRadians(w));
         long xm1=(long) (r*sin(Math.toRadians(90-w))*Math.toRadians(l));
         long ymc=(long) (r*Math.toRadians(map.centerSize.x));
         long xmc=(long) (r*sin(Math.toRadians(90-w))*Math.toRadians(map.centerSize.y));
-        coords.x = (int) (446-(xmc-xm1)*0.00451); 
-        coords.y =(int) (311+(ymc-ym1)*0.0043);
+        coords.x = (int) (446-(xmc-xm1)*xPix); 
+        coords.y =(int) (315+(ymc-ym1)*yPix);
         
         
         return coords;
