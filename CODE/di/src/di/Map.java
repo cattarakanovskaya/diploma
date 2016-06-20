@@ -66,8 +66,8 @@ public class Map {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         mapPanel.getGraphics().drawOval(446, 315, 7, 7); // центр
-        mapPanel.getGraphics().drawOval(453, 315, 7, 7);
-        mapPanel.getGraphics().drawOval(453, 307, 7, 7);
+       // mapPanel.getGraphics().drawOval(453, 315, 7, 7);
+       // mapPanel.getGraphics().drawOval(453, 307, 7, 7);
         ArrayList<Ship> shipsAtMoment = searchShipsAtMoment(moment);
         for (Ship ship : shipsAtMoment) {
             mapPanel.getGraphics().fillOval(
@@ -82,7 +82,7 @@ public class Map {
         }
     }
 
-    private ArrayList<Ship> searchShipsAtMoment(long moment) {
+    public ArrayList<Ship> searchShipsAtMoment(long moment) {
         ArrayList<Ship> momentShips = new ArrayList();
         for (Ship ship : ships) {
             if (moment == ship.getTime()) {

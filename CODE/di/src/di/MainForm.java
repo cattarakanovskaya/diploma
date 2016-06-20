@@ -29,12 +29,6 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         });
-        // if(map!=null){
-
-        //  jPanel2.addKeyListener(new KeyAdapter() {
-        //    public void keyPressed(KeyEvent e) {
-        //  });
-        // }
     }
 
     @SuppressWarnings("unchecked")
@@ -257,7 +251,8 @@ public class MainForm extends javax.swing.JFrame {
         if (map != null) {
             int x = evt.getX();
             int y = evt.getY();
-            ImaginaryShip is = new ImaginaryShip(x, y, map);
+            ImaginaryShip is = new ImaginaryShip(y, x, map);
+            Count c = new Count(is, map.searchShipsAtMoment(map.now), jPanel3);
         }
     }//GEN-LAST:event_jPanel2MouseMoved
 
