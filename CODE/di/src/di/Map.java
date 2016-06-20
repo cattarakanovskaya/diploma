@@ -65,20 +65,21 @@ public class Map {
         } catch (Exception ex) {
             Logger.getLogger(LoadFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        mapPanel.getGraphics().setColor(Color.LIGHT_GRAY);
         mapPanel.getGraphics().drawOval(446, 315, 7, 7); // центр
        // mapPanel.getGraphics().drawOval(453, 315, 7, 7);
        // mapPanel.getGraphics().drawOval(453, 307, 7, 7);
         ArrayList<Ship> shipsAtMoment = searchShipsAtMoment(moment);
+        mapPanel.getGraphics().setColor(Color.red);
         for (Ship ship : shipsAtMoment) {
             mapPanel.getGraphics().fillOval(
                     ship.getJPanelCoords(this).x,
                     ship.getJPanelCoords(this).y, 7, 7
             );
-           /* System.out.print(ship.getId());
-            System.out.print(' ');
-            System.out.print(' ');
-            System.out.print(ship.getJPanelCoords(this).y);
-            System.out.print('\n');*/
+            mapPanel.getGraphics().drawLine(
+                    ship.getJPanelCoords(this).x+4,
+                    ship.getJPanelCoords(this).y+4, ship.getJPanelCoords(this).x+ship.getCourse(this).x, ship.getJPanelCoords(this).y-ship.getCourse(this).y
+            );
         }
     }
 

@@ -1,5 +1,8 @@
 package di;
 
+import di.utils.Vector2f;
+import static java.lang.Math.abs;
+import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 public class Ship {
@@ -85,6 +88,32 @@ public class Ship {
 
     public class Vector2i {
         int x, y;
+    }
+    
+    public Vector2i getCourse(Map map){
+        Vector2i coords = new Vector2i();
+        int ym = (int) (cos(Math.toRadians(course))*speed*1852);
+        int xm = (int) (sin(Math.toRadians(course))*speed*1852);
+        float xPix = (float) 0.00451;
+        float yPix = (float) 0.0043;
+        if(map.getZoom()>8){
+            xPix=xPix*2*(map.getZoom()-8);
+            yPix=yPix*2*(map.getZoom()-8);
+        }
+        if(map.getZoom()<8){
+            xPix=xPix/2*(8-map.getZoom());
+            yPix=yPix/2*(8-map.getZoom());
+        }
+        if(map.getZoom()==11){
+            xPix=(float) (xPix+0.0088);
+            yPix=(float) (yPix+0.0086);
+        }
+        coords.y = (int) (ym*yPix);
+        coords.x = (int) (xm*xPix);
+        
+        
+        
+        return coords;
     }
 
 }
