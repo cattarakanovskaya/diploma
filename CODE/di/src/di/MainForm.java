@@ -8,6 +8,8 @@ import java.net.*;
 import java.time.Clock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MainForm extends javax.swing.JFrame {
 
@@ -16,15 +18,23 @@ public class MainForm extends javax.swing.JFrame {
 
     public MainForm() {
         initComponents();
-        
-       // if(map!=null){
-            
-          //  jPanel2.addKeyListener(new KeyAdapter() {
-            //    public void keyPressed(KeyEvent e) {
-                    
-          //  });
-            
-       // }
+
+        jSlider1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+                if (player != null) {
+                    System.out.println("" + jSlider1.getValue() + " " + player.getBarCoordTime(jSlider1.getValue()));
+                    player.setNow(player.getBarCoordTime(jSlider1.getValue()));
+                }
+            }
+        });
+        // if(map!=null){
+
+        //  jPanel2.addKeyListener(new KeyAdapter() {
+        //    public void keyPressed(KeyEvent e) {
+        //  });
+        // }
     }
 
     @SuppressWarnings("unchecked")
@@ -266,43 +276,43 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changeCoordTimeBar
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        
-                    System.out.print("hui");
-                
+
+        System.out.print("hui");
+
     }//GEN-LAST:event_formKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(map!=null){
+        if (map != null) {
             map.more();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(map!=null){
+        if (map != null) {
             map.less();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(map!=null){
+        if (map != null) {
             map.left();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if(map!=null){
+        if (map != null) {
             map.right();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if(map!=null){
+        if (map != null) {
             map.up();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(map!=null){
+        if (map != null) {
             map.down();
         }
     }//GEN-LAST:event_jButton5ActionPerformed

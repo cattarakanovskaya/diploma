@@ -22,20 +22,19 @@ public class MapPlayer {
             @Override
             public void run() {
                 while (true) {
+                    map.now = now;
                     map.draw(now);
                     if (state == MapPlayerState.PLAY) {
                         now += 60;
-                        map.now = now;
                         slider.setValue(getTimeBarCoord());
                     }
                     if (now >= finish) {
                         now = start;
-                        map.now = now;
                         state = MapPlayerState.PAUSE;
                         slider.setValue(getTimeBarCoord());
                     }
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -44,16 +43,16 @@ public class MapPlayer {
         });
         thread.start();
     }
-    
-    public MapPlayer(final Map map, int bar){
+
+    public MapPlayer(final Map map, int bar) {
         this.map = map;
         start = map.firstMoment;
         finish = map.lastMoment;
-        now = start+bar*(finish-start)/100;
+        now = start + bar * (finish - start) / 100;
         System.out.print(now);
         System.out.print('\n');
         map.draw(now);
-        
+
     }
 
     public void play() {
@@ -63,9 +62,26 @@ public class MapPlayer {
             state = MapPlayerState.PLAY;
         }
     }
+    
+    public void pause() {
+        state = MapPlayerState.PAUSE;
+    }
 
     public int getTimeBarCoord() {
-        return (int) ( (now - start)*100 /  (finish - start));
+        return (int) ((now - start) * 100 / (finish - start));
+    }
+
+    public long getBarCoordTime(int val) {
+        int n = (int) ((finish - start) / 60);
+        
+        return start + 60 * (val * n / 100);
+    }
+
+    public void setNow(long now) {
+        if (state != MapPlayerState.PLAY) {
+            this.now = now;
+            pause();
+        }
     }
 
     public enum MapPlayerState {

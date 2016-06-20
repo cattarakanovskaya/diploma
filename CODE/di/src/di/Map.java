@@ -54,7 +54,7 @@ public class Map {
     }
 
     private Image getMapImage() throws MalformedURLException {
-        String url = "https://maps.googleapis.com/maps/api/staticmap?center="+centerSize.x+","+centerSize.y+"&zoom="+zoom+"&scale=2&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:C%7C42.76455,132.75894&markers=color:white%7Clabel:Q%7C42.7735,132.7679&markers=color:white%7Clabel:Q%7C42.7734,132.952&markers=color:white%7Clabel:Q%7C42.5485,132.951&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
+        String url = "https://maps.googleapis.com/maps/api/staticmap?center="+centerSize.x+","+centerSize.y+"&zoom="+zoom+"&scale=2&size=450x325&maptype=roadmap&markers=color:blue%7Clabel:C%7C42.76455,132.75894&markers=color:white%7Clabel:Q%7C42.7735,132.7679&markers=color:white%7Clabel:Q%7C42.7734,132.952&markers=color:red%7Clabel:Q%7C42.5485,132.951&key=AIzaSyDm3iFPxUwcgpWmNEI_wto0mHwT_99JQUk";
 
         return new ImageIcon(new URL(url)).getImage();
     }
