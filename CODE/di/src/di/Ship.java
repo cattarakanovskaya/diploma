@@ -92,8 +92,8 @@ public class Ship {
     
     public Vector2i getCourse(Map map){
         Vector2i coords = new Vector2i();
-        int ym = (int) (cos(Math.toRadians(course))*speed*1852);
-        int xm = (int) (sin(Math.toRadians(course))*speed*1852);
+        int ym = (int) (cos(Math.toRadians(course))*speed*30);
+        int xm = (int) (sin(Math.toRadians(course))*speed*30);
         float xPix = (float) 0.00451;
         float yPix = (float) 0.0043;
         if(map.getZoom()>8){

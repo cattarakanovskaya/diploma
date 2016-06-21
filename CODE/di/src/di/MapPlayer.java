@@ -34,7 +34,7 @@ public class MapPlayer {
                         slider.setValue(getTimeBarCoord());
                     }
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1000/6);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
                     }

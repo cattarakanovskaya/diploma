@@ -72,6 +72,7 @@ public class Map {
         ArrayList<Ship> shipsAtMoment = searchShipsAtMoment(moment);
         mapPanel.getGraphics().setColor(Color.red);
         for (Ship ship : shipsAtMoment) {
+             mapPanel.getGraphics().setColor(Color.LIGHT_GRAY);
             mapPanel.getGraphics().fillOval(
                     ship.getJPanelCoords(this).x,
                     ship.getJPanelCoords(this).y, 7, 7
