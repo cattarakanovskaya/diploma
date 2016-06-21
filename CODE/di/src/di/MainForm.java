@@ -252,6 +252,7 @@ public class MainForm extends javax.swing.JFrame {
             int x = evt.getX();
             int y = evt.getY();
             ImaginaryShip is = new ImaginaryShip(y, x, map);
+            map.imaginaryGet(is.width, is.longitude);
             //Count c = new Count(is, map.searchShipsAtMoment(map.now), jPanel3);
         }
     }//GEN-LAST:event_jPanel2MouseMoved

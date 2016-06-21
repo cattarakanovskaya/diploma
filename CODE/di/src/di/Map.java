@@ -18,6 +18,7 @@ public class Map {
     private Vector2f mostSize = new Vector2f();
     private Vector2f leastSize = new Vector2f();
     public Vector2f centerSize = new Vector2f();
+    public Vector2f imaginary;
     
     public long firstMoment = Long.MAX_VALUE;
     public long lastMoment = Long.MIN_VALUE;
@@ -127,4 +128,10 @@ public class Map {
     public int getZoom(){
         return this.zoom;
     }
+    
+    public void imaginaryGet(float w, float l){
+        imaginary.x = w;
+        imaginary.y = l;
+    }
+    
 }

@@ -36,10 +36,15 @@ public class ImaginaryShip {
             width = (float) (map.centerSize.x + ((315 - w) * 10000 / 85) * 180 / (6371000 * Math.PI));
             longitude = (float) (map.centerSize.y - ((450 - l) * 1 / 9) * 180 / (6371000 * sin(Math.toRadians(90 - width) * Math.PI)));
         }*/
-        System.out.print(width);
+      /*  System.out.print(width);
         System.out.print(' ');
         System.out.print(longitude);
-        System.out.print('\n');
+        System.out.print('\n');*/
         
+    }
+    
+    public ImaginaryShip(float w, float l){
+        this.width=w;
+        this.longitude=l;
     }
 }
