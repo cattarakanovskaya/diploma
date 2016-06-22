@@ -130,8 +130,8 @@ public class Map {
     }
     
     public void imaginaryGet(float w, float l){
-        imaginary.x = w;
-        imaginary.y = l;
+        //imaginary.x = w;
+        //imaginary.y = l;
     }
     
 }

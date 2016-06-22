@@ -37,7 +37,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jSlider1 = new javax.swing.JSlider();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new SectorPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -247,6 +247,7 @@ public class MainForm extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    
     private void jPanel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseMoved
         if (map != null) {
             int x = evt.getX();
@@ -254,6 +255,7 @@ public class MainForm extends javax.swing.JFrame {
             ImaginaryShip is = new ImaginaryShip(y, x, map);
             map.imaginaryGet(is.width, is.longitude);
             //Count c = new Count(is, map.searchShipsAtMoment(map.now), jPanel3);
+            jPanel3.calcSectors(is, map.searchShipsAtMoment(map.now));
         }
     }//GEN-LAST:event_jPanel2MouseMoved
 
@@ -359,7 +361,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private SectorPanel jPanel3;
     private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
 }
