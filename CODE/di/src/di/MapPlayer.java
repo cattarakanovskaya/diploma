@@ -26,14 +26,13 @@ public class MapPlayer {
                     map.draw(now);
                     if (state == MapPlayerState.PLAY) {
                         now += 60;
+                        //ImaginaryShip s = new ImaginaryShip(map.imaginary.x, map.imaginary.y);
+                        //Count c = new Count(s, map.searchShipsAtMoment(now));
+                        //System.out.print(map.imaginary.x);
+                        //System.out.print(' ');
+                        //System.out.print(map.imaginary.y);
+                        //System.out.print('\n');
                         slider.setValue(getTimeBarCoord());
-//                        ImaginaryShip s = new ImaginaryShip(map.imaginary.x, map.imaginary.y);
-                       // Count c = new Count(s, map.searchShipsAtMoment(now));
-                       /* System.out.print(map.imaginary.x);
-                        System.out.print(' ');
-                        System.out.print(map.imaginary.y);
-                        System.out.print('\n');
-                        slider.setValue(getTimeBarCoord());*/
                     }
                     if (now >= finish) {
                         now = start;
